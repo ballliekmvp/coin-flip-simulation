@@ -1,0 +1,181 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.container {
+    display: flex;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    gap: 20px; /* Space between panels */
+    flex-wrap: wrap; /* Allow panels to wrap on smaller screens */
+    width: 100%;
+    max-width: 1000px; /* Max width to prevent it from getting too wide */
+}
+
+.left-panel {
+    flex: 0 0 250px; /* Fixed width for left panel, won't grow or shrink */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between control groups */
+    padding-right: 20px; /* Add some padding on the right */
+    border-right: 1px solid #eee; /* Separator line */
+}
+
+.center-area {
+    flex: 1; /* Allows center to grow and take available space */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.right-area {
+     flex: 2; /* Allows right area (graph) to take more space */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: relative; /* For positioning the top-right icons */
+}
+
+.top-right-icons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    gap: 10px;
+    font-size: 1.2em;
+}
+
+.icon {
+    cursor: pointer;
+    color: #888;
+}
+
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.slider-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="range"] {
+    flex-grow: 1; /* Slider takes available space */
+}
+
+input[type="number"] {
+    width: 60px; /* Fixed width for number input */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+}
+
+
+.button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    text-align: center; /* Center text in button */
+}
+
+.button.green {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.button.green:hover {
+    background-color: #45a049;
+}
+
+.button.red {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+.button.red:hover {
+    background-color: #d32f2f;
+}
+
+.counts {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+#tails-count {
+    color: green; /* As seen in the screenshot */
+}
+
+.toss-sequence {
+    border: 1px solid #ccc;
+    min-height: 50px; /* Give it some height */
+    padding: 10px;
+    overflow-y: auto; /* Add scroll if sequence is long */
+    white-space: normal; /* Allow text to wrap */
+    word-break: break-all; /* Break long words */
+}
+
+.graph-container {
+    flex-grow: 1; /* Graph container takes available space */
+    border: 1px solid #ccc; /* Border around graph area */
+    padding: 10px; /* Padding inside the graph area */
+    position: relative; /* Needed for Chart.js responsiveness */
+    min-height: 200px; /* Minimum height for the graph */
+}
+
+#proportion-graph {
+     width: 100% !important; /* Override Chart.js inline styles */
+     height: 100% !important; /* Override Chart.js inline styles */
+}
+
+
+/* Basic responsiveness */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center; /* Center content in column layout */
+    }
+
+    .left-panel {
+        width: 100%; /* Full width on small screens */
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid #eee; /* Add separator at the bottom */
+        padding-bottom: 20px;
+    }
+
+     .center-area,
+     .right-area {
+         width: 100%; /* Full width on small screens */
+     }
+
+     .right-area {
+         padding-top: 20px; /* Add space above the graph */
+     }
+
+     .top-right-icons {
+         position: static; /* Position relative to normal flow */
+         justify-content: flex-end; /* Push icons to the right */
+         margin-bottom: 10px; /* Space below icons */
+     }
+}
